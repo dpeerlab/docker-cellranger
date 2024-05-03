@@ -1,14 +1,11 @@
 # docker-cellranger
 
-Dockerized Cell Ranger v7.0.0
+Dockerized Cell Ranger v8.0.0
 
 - GEX: https://support.10xgenomics.com/single-cell-gene-expression/software/downloads/7.0/
 - VDJ: https://support.10xgenomics.com/single-cell-vdj/software/downloads/7.0/
 
-Reference dataset included:
-
-- Human reference dataset (GRCh38/Ensembl/10x) required for Cell Ranger V(D)J
-- Mouse reference dataset (GRCm38/Ensembl/10x) required for Cell Ranger V(D)J
+Version 7.2 supports Flex + CITE, Version 8.0 supports Visium HD.
 
 ## License
 
@@ -38,7 +35,7 @@ conda activate scing
 
 ```bash
 $ cellranger --help
-cellranger cellranger-7.0.0
+cellranger cellranger-8.0.0
 Process 10x Genomics Gene Expression, Feature Barcode, and Immune Profiling data
 
 USAGE:

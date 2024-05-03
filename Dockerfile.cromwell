@@ -1,9 +1,10 @@
-FROM centos:7
+FROM almalinux:8.9
 
-LABEL maintainer="Jaeyoung Chun (chunj@mskcc.org)"
+# CentOS 8 is dead, so we are using AlmaLinux 8.9. Built by Oracle.
+
+LABEL maintainer="Tobias Krause (krauset@mskcc.org)"
 
 ARG CELLRANGER_VERSION
-ARG VDJ_REFERENCE_VERSION
 ARG DOWNLOAD_URL
 ENV PATH /opt/cellranger-${CELLRANGER_VERSION}:$PATH
 
@@ -16,17 +17,7 @@ RUN curl -o cellranger-${CELLRANGER_VERSION}.tar.gz ${DOWNLOAD_URL} \
     && rm -rf cellranger-${CELLRANGER_VERSION}.tar.gz \
     && mv cellranger-${CELLRANGER_VERSION} /opt/
 
-# V(D)J GRCh38 Reference - 7.0.0 (May 17, 2022)
-RUN curl -O https://cf.10xgenomics.com/supp/cell-vdj/refdata-cellranger-vdj-GRCh38-alts-ensembl-${VDJ_REFERENCE_VERSION}.tar.gz \
-    && tar xzf refdata-cellranger-vdj-GRCh38-alts-ensembl-${VDJ_REFERENCE_VERSION}.tar.gz \
-    && rm -rf refdata-cellranger-vdj-GRCh38-alts-ensembl-${VDJ_REFERENCE_VERSION}.tar.gz \
-    && mv refdata-cellranger-vdj-GRCh38-alts-ensembl-${VDJ_REFERENCE_VERSION} /opt/
-
-# V(D)J GRCm38 Reference - 7.0.0 (May 17, 2022)
-RUN curl -O https://cf.10xgenomics.com/supp/cell-vdj/refdata-cellranger-vdj-GRCm38-alts-ensembl-${VDJ_REFERENCE_VERSION}.tar.gz \
-    && tar xzf refdata-cellranger-vdj-GRCm38-alts-ensembl-${VDJ_REFERENCE_VERSION}.tar.gz \
-    && rm -rf refdata-cellranger-vdj-GRCm38-alts-ensembl-${VDJ_REFERENCE_VERSION}.tar.gz \
-    && mv refdata-cellranger-vdj-GRCm38-alts-ensembl-${VDJ_REFERENCE_VERSION} /opt/
+# Removing VDJ reference data compared to previous version to make the container smaller
 
 WORKDIR /opt
 

@@ -22,9 +22,8 @@ fi
 
 # build ${image_name}:${version}
 docker build \
-    --tag ${image_name}:${version} \
+    --tag ${image_cellranger_name}:${version} \
     --build-arg DOWNLOAD_URL=${download_url} \
-    --build-arg VDJ_REFERENCE_VERSION=${vdj_ref_version} \
     --build-arg CELLRANGER_VERSION=${version} .
 
 # hack: comment the ENTRYPOINT and CMD lines to make it work for cromwell
@@ -36,8 +35,7 @@ cat Dockerfile \
 
 # build cromwell-${image_name}:${version}
 docker build \
-    --tag cromwell-${image_name}:${version} \
+    --tag cromwell-${image_cromwell_name}:${version} \
     --build-arg DOWNLOAD_URL=${download_url} \
-    --build-arg VDJ_REFERENCE_VERSION=${vdj_ref_version} \
     --build-arg CELLRANGER_VERSION=${version} \
     -f Dockerfile.cromwell .
