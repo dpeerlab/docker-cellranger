@@ -23,6 +23,7 @@ fi
 # build ${image_name}:${version}
 docker build \
     --tag ${image_cellranger_name}:${version} \
+    --platform linux/amd64 \
     --build-arg DOWNLOAD_URL=${download_url} \
     --build-arg CELLRANGER_VERSION=${version} .
 
@@ -36,6 +37,7 @@ cat Dockerfile \
 # build cromwell-${image_name}:${version}
 docker build \
     --tag cromwell-${image_cromwell_name}:${version} \
+    --platform linux/amd64 \
     --build-arg DOWNLOAD_URL=${download_url} \
     --build-arg CELLRANGER_VERSION=${version} \
     -f Dockerfile.cromwell .
