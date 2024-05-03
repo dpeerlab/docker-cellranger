@@ -4,16 +4,16 @@ source config.sh
 
 # cellranger
 docker run -it --rm \
-    cellranger:${version} --help
+    ${image_cellranger_name}:${version} --help
 
 # cellranger count
 docker run -it --rm \
-    cellranger:${version} count --help
+    ${image_cellranger_name}:${version} count --help
 
 # cellranger vdj
 docker run -it --rm \
-    cellranger:${version} vdj --help
+    ${image_cellranger_name}:${version} vdj --help
 
 # cellranger version
 docker run -it --rm \
-    cellranger:${version} --version
+    ${image_cellranger_name}:${version} --version
